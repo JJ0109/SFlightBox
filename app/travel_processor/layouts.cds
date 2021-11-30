@@ -34,7 +34,7 @@ annotate BoxService.Box with @UI : {
   },
   SelectionFields : [
     BoxID,
-    to_Customer_CustomerID,
+    to_Patient_PatientenID,
     BoxStatus_code
   ],
   LineItem : [
@@ -42,7 +42,7 @@ annotate BoxService.Box with @UI : {
     { $Type  : 'UI.DataFieldForAction', Action : 'BoxService.rejectBox',   Label  : '{i18n>RejectBox}'   },
     //{ $Type  : 'UI.DataFieldForAction', Action : 'BoxService.deductDiscount', Label  : '{i18n>DeductDiscount}' },
     { Value : BoxID               },
-    { Value : to_Customer_CustomerID },
+    { Value : to_Patient_PatientenID },
     { Value : BeginDateAusleihe              },
     { Value : EndDateAusleihe                },
     { Value : Boxname            },
@@ -73,7 +73,7 @@ annotate BoxService.Box with @UI : {
   }],
   FieldGroup#BoxData : { Data : [
     { Value : BoxID               },
-    { Value : to_Customer_CustomerID },
+    { Value : to_Patient_PatientenID },
     { Value : Boxname            },
     {
       $Type       : 'UI.DataField',
@@ -111,9 +111,9 @@ annotate BoxService.Geraete with @UI : {
   },
   SelectionFields : [],
   LineItem : [
-    { Value : to_Carrier.AirlinePicURL,  Label : '  '},
+    { Value : to_Geraetetyp.AnleitungURL,  Label : '  '},
     { Value : GeraeteID,             Label : '{i18n>BookingNumber}' },
-    { Value : to_Carrier_AirlineID   },
+    { Value : to_Geraetetyp_GeraetetypID   },
    // { Value : ConnectionID,          Label : '{i18n>FlightNumber}' },
     { Value : GeraeteStatus_code     }
   ],
@@ -130,8 +130,8 @@ annotate BoxService.Geraete with @UI : {
   }, ],
   FieldGroup #GeraeteData : { Data : [
     { Value : GeraeteID              },
-    { Value : to_Customer_CustomerID },
-    { Value : to_Carrier_AirlineID   },
+    { Value : to_Patient_PatientenID },
+    { Value : to_Geraetetyp_GeraetetypID   },
     { Value : ConnectionID           },
     { Value : GeraeteStatus_code     }
   ]},

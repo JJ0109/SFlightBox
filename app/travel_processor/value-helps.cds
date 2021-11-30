@@ -8,20 +8,20 @@ annotate my.Box {
 
   BoxStatus @Common.ValueListWithFixedValues;
 
-  to_Customer @Common.ValueList: {
-    CollectionPath : 'Passenger',
+  to_Patient @Common.ValueList: {
+    CollectionPath : 'Patient',
     Label : 'Customer ID',
     Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Customer_CustomerID, ValueListProperty: 'CustomerID'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'FirstName'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'LastName'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Title'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Street'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PostalCode'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'City'},
+      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Patient_PatientenID, ValueListProperty: 'PatientenID'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Vorname'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Nachname'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Titel'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Strasse'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Plz'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Stadt'},
       {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'CountryCode_code'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PhoneNumber'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'EMailAddress'}
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Telefonnr'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'EMail'}
     ],
     SearchSupported : true
   };
@@ -32,30 +32,30 @@ annotate my.Geraete {
 
   GeraeteStatus @Common.ValueListWithFixedValues;
 
-  to_Customer @Common.ValueList: {
-    CollectionPath : 'Passenger',
+  to_Patient @Common.ValueList: {
+    CollectionPath : 'Patient',
     Label : '',
     Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Customer_CustomerID, ValueListProperty: 'CustomerID'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'FirstName'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'LastName'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Title'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Street'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PostalCode'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'City'},
+      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Patient_PatientenID, ValueListProperty: 'PatientenID'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Vorname'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Nachname'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Titel'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Strasse'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Plz'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Stadt'},
       {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'CountryCode_code'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'PhoneNumber'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'EMailAddress'}
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Telefonnr'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'EMail'}
     ],
     SearchSupported : true
   };
 
-  to_Carrier @Common.ValueList: {
-    CollectionPath : 'Airline',
+  to_Geraetetyp @Common.ValueList: {
+    CollectionPath : 'Geraetetyp',
     Label : '',
     Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Carrier_AirlineID, ValueListProperty: 'AirlineID'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Name'},
+      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Geraetetyp_GeraetetypID, ValueListProperty: 'GeraetetypID'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Bezeichnung'},
     ],
     SearchSupported : true
   };
@@ -64,9 +64,9 @@ annotate my.Geraete {
     CollectionPath : 'Flight',
     Label : '',
     Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Carrier_AirlineID,    ValueListProperty: 'AirlineID'},
+      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: to_Geraetetyp_GeraetetypID,    ValueListProperty: 'GeraetetypID'},
       {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: ConnectionID, ValueListProperty: 'ConnectionID'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'to_Airline/Name'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'to_Geraetetyp/Bezeichnung'},
     ],
     SearchSupported : true,
     PresentationVariantQualifier: 'SortOrderPV'  // use presentation variant to sort by FlightDate desc
@@ -77,20 +77,20 @@ annotate my.Geraete {
 
 
 
-annotate my.Flight {
+annotate my.GVerbindung {
 
-  AirlineID @Common.ValueList: {
-    CollectionPath : 'Airline',
+  GeraetetypID @Common.ValueList: {
+    CollectionPath : 'Geraetetyp',
     Label : '',
     Parameters : [
-      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: AirlineID, ValueListProperty: 'AirlineID'},
-      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Name'},
+      {$Type: 'Common.ValueListParameterInOut', LocalDataProperty: GeraetetypID, ValueListProperty: 'GeraetetypID'},
+      {$Type: 'Common.ValueListParameterDisplayOnly', ValueListProperty: 'Bezeichnung'},
     ],
     SearchSupported : true
   };
 }
 
-annotate my.Passenger {
+annotate my.Patient {
 
   CountryCode @Common.ValueList : {
     CollectionPath  : 'Countries',

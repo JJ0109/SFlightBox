@@ -1,8 +1,8 @@
 using { Currency, custom.managed, sap.common.CodeList } from './common';
 using {
-  sap.fe.cap.travel.Airline,
-  sap.fe.cap.travel.Passenger,
-  sap.fe.cap.travel.Flight
+  sap.fe.cap.travel.Geraetetyp,
+  sap.fe.cap.travel.Patient,
+  sap.fe.cap.travel.GVerbindung
  } from './master-data';
 
 namespace sap.fe.cap.travel;
@@ -15,7 +15,7 @@ entity Box : managed {
   EndDateAusleihe        : Date;
   Boxname    : String(1024);
   BoxStatus   : Association to BoxStatus @readonly;
-  to_Customer    : Association to Passenger;
+  to_Patient    : Association to Patient;
   to_Geraete     : Composition of many Geraete on to_Geraete.to_Box = $self;
 };
 
@@ -25,11 +25,11 @@ entity Geraete  : managed {
   GeraeteID         : Integer @Core.Computed;
   ConnectionID      : String(4);
   GeraeteStatus     : Association to GeraeteStatus;
-  to_Carrier        : Association to Airline;
-  to_Customer       : Association to Passenger;
+  to_Geraetetyp        : Association to Geraetetyp;
+  to_Patient       : Association to Patient;
   to_Box         : Association to Box;
-  to_Flight         : Association to Flight on  to_Flight.AirlineID = to_Carrier.AirlineID
-                                            and to_Flight.ConnectionID = ConnectionID;
+  to_GVerbindung         : Association to GVerbindung on  to_GVerbindung.GeraetetypID = to_Geraetetyp.GeraetetypID
+                                            and to_GVerbindung.ConnectionID = ConnectionID;
 };
 
 //

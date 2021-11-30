@@ -18,7 +18,7 @@ extend projection BoxService.Box with {
 annotate BoxService.Box with {
   BeginDate   @Common.FieldControl  : BoxStatus.fieldControl;
   EndDate     @Common.FieldControl  : BoxStatus.fieldControl;  
-  to_Customer @Common.FieldControl  : BoxStatus.fieldControl;
+  to_Patient @Common.FieldControl  : BoxStatus.fieldControl;
 
 } actions {
   rejectBox @(
@@ -48,8 +48,8 @@ annotate BoxService.Geraete with @UI.CreateHidden : to_Box.BoxStatus.createDelet
 annotate BoxService.Geraete {
   ConnectionID  @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
   GeraeteStatus @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
-  to_Carrier    @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
-  to_Customer   @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
+  to_Geraetetyp    @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
+  to_Patient   @Common.FieldControl  : to_Box.BoxStatus.fieldControl;
 };
 
 
